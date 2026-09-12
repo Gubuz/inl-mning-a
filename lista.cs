@@ -43,20 +43,6 @@ while (true)
             Console.WriteLine("Det finns ingen vara med det numret.");
         }
     }
-    // Visar den dyraste varan om användaren skriver "dyrast"
-    else if (input.Trim().Equals(
-        "dyrast",
-        StringComparison.OrdinalIgnoreCase))
-    {
-        VisaDyrast(names, prices);
-    }
-    // Sorterar varorna efter pris om användaren skriver "sortera"
-    else if (input.Trim().Equals(
-        "sortera",
-        StringComparison.OrdinalIgnoreCase))
-    {
-        SorteraEfterPris(names, prices);
-    }
     else
     {
         // Om inmatningen inte är ett kommando används den som varunamn
@@ -78,4 +64,24 @@ while (true)
             );
         }
     }
+}
+
+// Visar alla varor i listan tillsammans med deras pris och den totala summan
+static void VisaLista(List<string> names, List<int> prices)
+{
+    if (names.Count == 0)
+    {
+        Console.WriteLine("Listan är tom.");
+        return;
+    }
+
+    int total = 0;
+
+    for (int i = 0; i < names.Count; i++)
+    {
+        Console.WriteLine($"{i + 1}. {names[i]} - {prices[i]} kr");
+        total += prices[i];
+    }
+
+    Console.WriteLine($"Totalt: {total} kr");
 }
